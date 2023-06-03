@@ -1,3 +1,7 @@
+#Output dir
+output/
+.vscode/
+
 # Prerequisites
 *.d
 
