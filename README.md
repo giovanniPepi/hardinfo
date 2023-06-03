@@ -1,2 +1,3 @@
 # hardinfo
-Hardware info 
+
+Get Hardware Information in Linux.
