@@ -1,5 +1,5 @@
 CC = clang
-CFLAGS = -Iinclude -Wall -Wextra -g -std=c17 -O3 
+CFLAGS = -Iinclude -Wall -Wextra -std=c17 -Ofast 
 SRCDIR = src
 OBJDIR = output
 
