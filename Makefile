@@ -5,7 +5,7 @@ OBJDIR = output
 
 SRCS = $(wildcard $(SRCDIR)/*.c)
 OBJS = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
-EXECUTABLE = output/target
+EXECUTABLE = output/hardinfo
 
 all: $(EXECUTABLE)
 
