@@ -1,0 +1,2 @@
+# hardinfo
+Hardware info 
