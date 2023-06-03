@@ -11,4 +11,5 @@ Under development, CLI-only environment.
 Use ```make```
 
 # Running
-```./output/hardinfo```
+
+Rrun ```./output/hardinfo``` inside the compiled directory
