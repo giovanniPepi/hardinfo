@@ -1,32 +1,27 @@
 #include <stdio.h>
 #include <string.h>
+#include "../include/open_file.h"
 
 #define MAX_LINE_LENGTH 256
 
-void get_cpu_info(char *cpu_name)
-{
-    FILE *file = fopen("/proc/cpuinfo", "r");
-    char line[MAX_LINE_LENGTH];
-    
-    while (fgets(line, sizeof(line), file))
-    {
-        if (strncmp(line, "model name", 10) == 0)
-        {
-            sscanf(line, "%*[^:]:%[^\n]", cpu_name); /* Skip the characters before the : */
-            break;
+char line[MAX_LINE_LENGTH];
+char cpu_name[MAX_LINE_LENGTH];
+
+void get_cpu_info(char *cpu_name, FILE* cpuinfo_file) {
+        printf("Getting /proc/cpuinfo ...\n");
+
+        while (fgets(line, sizeof(line), cpuinfo_file)) {
+                if (strncmp(line, "model name", 10) == 0) {
+                        sscanf(line, "%*[^:]:%[^\n]", cpu_name); /* Skip the characters before the : */
+                        break;      
+                }
         }
-    }
-    
-    fclose(file);
 }
 
-void hardinfo() {
-    printf("Getting /proc/cpuinfo ...\n");
+void hardinfo() {        
+        FILE* cpuinfo_file = open_file("/proc/cpuinfo", "r"); 
 
-    char cpu_name[MAX_LINE_LENGTH];
+        get_cpu_info(cpu_name, cpuinfo_file);
 
-    get_cpu_info(cpu_name);
-
-    printf("CPU name: %s\n", cpu_name);
-
+        printf("CPU name: %s\n", cpu_name);
 }
