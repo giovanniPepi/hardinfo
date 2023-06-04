@@ -1,10 +1,12 @@
 # hardinfo
 
-Get Hardware Information in Linux.
+Get hardware information in Linux system.
 
 # Status
 
 Under development, CLI-only environment.
+
+All instructions below assume running commands in a terminal. 
 
 # Compiling
 
@@ -12,7 +14,7 @@ Use ```make```
 
 # Using
 
-On a terminal,  ```./output/hardinfo``` inside the compiled directory. 
+Single run ```./output/hardinfo``` inside the compiled directory. 
 
-On a terminal,  ```watch -n{seconds} ./output/hardinfo``` to get updated info on frequencies.
+```watch -n{seconds} ./output/hardinfo``` to get updated info on frequencies.
 
