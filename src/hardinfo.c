@@ -3,12 +3,11 @@
 #include <stdlib.h>
 #include "../include/open_file.h"
 
-#define MAX_LINE_LENGTH 64
-#define MIN_BUFF_LENGTH 128 
-#define MAX_WORD_LENGTH 256
+#define BUFF_LENGTH 128 
+#define MAX_WORD_LENGTH 64
 
 void get_cpu_name(char *cpu_name, FILE* cpuinfo_file) {
-        char buff[MIN_BUFF_LENGTH];
+        char buff[BUFF_LENGTH];
 
         /* Without rewind, any other function that used the stream may have moved the start pos */
         rewind(cpuinfo_file); 
@@ -22,7 +21,7 @@ void get_cpu_name(char *cpu_name, FILE* cpuinfo_file) {
 }
 
 void get_proc_count(int *proc_count, FILE* cpuinfo_file) {
-        char buff[MAX_WORD_LENGTH];        
+        char buff[BUFF_LENGTH];        
         char sword[] = "processor";
 
         rewind(cpuinfo_file); 
@@ -36,8 +35,8 @@ void get_proc_count(int *proc_count, FILE* cpuinfo_file) {
 }
 
 void get_core_count(int *core_count, FILE* cpuinfo_file) {
-        char buff[MAX_WORD_LENGTH];        
-        char score_count[MAX_LINE_LENGTH];
+        char buff[BUFF_LENGTH];        
+        char score_count[MAX_WORD_LENGTH];
         
         rewind(cpuinfo_file); 
 
@@ -52,8 +51,8 @@ void get_core_count(int *core_count, FILE* cpuinfo_file) {
 }
 
 void get_cpu_mhz(double **cpu_mhz, FILE* cpuinfo_file) {
-    char buff[MAX_WORD_LENGTH];
-    char tcpu_mhz[MAX_LINE_LENGTH];
+    char buff[BUFF_LENGTH];
+    char tcpu_mhz[MAX_WORD_LENGTH];
     int i = 0;
 
     rewind(cpuinfo_file);
@@ -69,7 +68,7 @@ void get_cpu_mhz(double **cpu_mhz, FILE* cpuinfo_file) {
 
 void hardinfo() {     
 
-        char cpu_name[MAX_LINE_LENGTH];
+        char cpu_name[MAX_WORD_LENGTH];
         int proc_count = 0;
         int core_count = 0;
         int i = 0;
@@ -87,6 +86,7 @@ void hardinfo() {
         /* Print region*/
         printf("%s\n", cpu_name);
         printf("Processors: %d, Cores: %d\n", proc_count, core_count);
+        printf("[Frequencies] \n");
 
         for (i = 0; i < proc_count; i++) {
                 printf("Processor %d - %.0f MHz\n", i, cpu_mhz[i]);
