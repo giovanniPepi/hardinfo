@@ -10,7 +10,9 @@ Under development, CLI-only environment.
 
 Use ```make```
 
-# Running
+# Using
 
-Run ```./output/hardinfo``` inside the compiled directory. ```watch -n{seconds} ./output/hardinfo``` to get updated info on frequencies.
+On a terminal,  ```./output/hardinfo``` inside the compiled directory. 
+
+On a terminal,  ```watch -n{seconds} ./output/hardinfo``` to get updated info on frequencies.
 
