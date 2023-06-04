@@ -115,7 +115,7 @@ void hardinfo() {
         /* Fill start values with something bigger to compare */
         fill_min_freq_values(&min_cpu_mhz, proc_count);
 
-        while (j < 5000) {
+        while (j < 10000) {
                 get_cpu_mhz(&cpu_mhz, &min_cpu_mhz, &max_cpu_mhz, cpuinfo_file);
                 j++;
         }
