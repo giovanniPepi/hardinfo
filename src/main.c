@@ -1,5 +1,6 @@
 #include "../include/hardinfo.h"
 #include <sys/time.h>
+#include <stdio.h>
 
 double get_wall_time() {
 	struct timeval time;
@@ -12,12 +13,12 @@ int main() {
 	double start_time, end_time, execution_time;
 	start_time = get_wall_time();
 
-    hardinfo();
+	hardinfo();
 
-    end_time = get_wall_time();
+	end_time = get_wall_time();
 	execution_time = end_time - start_time;	
 
-    printf("Time: %f seconds\n", execution_time);
+	printf("Time: %f seconds\n", execution_time);
 
-    return 0;
+	return 0;
 }

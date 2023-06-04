@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
 #include "../include/open_file.h"
 
 #define BUFF_LENGTH 128 
@@ -96,7 +97,7 @@ void hardinfo() {
         int proc_count = 0;
         int core_count = 0;
         int i = 0;
-        int j = 0;         
+        int seconds = 5;
         double *cpu_mhz = NULL;
         double *min_cpu_mhz = NULL;
         double *max_cpu_mhz = NULL;
@@ -115,9 +116,13 @@ void hardinfo() {
         /* Fill start values with something bigger to compare */
         fill_min_freq_values(&min_cpu_mhz, proc_count);
 
-        while (j < 10000) {
+        clock_t start_time = clock();
+
+        printf("Collecting data for %d seconds...\n", seconds);
+        while((clock() - start_time) / CLOCKS_PER_SEC < seconds){
+                
                 get_cpu_mhz(&cpu_mhz, &min_cpu_mhz, &max_cpu_mhz, cpuinfo_file);
-                j++;
+
         }
 
         /* Print region*/
@@ -126,7 +131,7 @@ void hardinfo() {
         printf("[Frequencies] \n");
 
         for (i = 0; i < proc_count; i++) {
-                printf("Processor [%d] Current %.0f MHz || Min %.0f || Max %.0f \n", i, cpu_mhz[i], min_cpu_mhz[i], max_cpu_mhz[i]);
+                printf("Processor [%d] Current %.0f MHz || Max %.0f || Min %.0f  \n", i, cpu_mhz[i],  max_cpu_mhz[i], min_cpu_mhz[i]);
         }
 
         
