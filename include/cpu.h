@@ -1,5 +1,4 @@
-#define BUFF_LENGTH 128 
-#define MAX_WORD_LENGTH 64
+#pragma once
 
 /*Get CPU name*/
 void g_cpu(char *cpu_name, FILE* cpuinfo_file);

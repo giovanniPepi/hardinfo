@@ -4,6 +4,7 @@
 #include <time.h>
 #include "../include/open_file.h"
 #include "../include/cpu.h"
+#include "../include/constants.h"
 
 /*Initialize min values with higher values so they can be compared*/
 void fill_min_freq_values (double **min_cpuf, int pcount) {
