@@ -14,7 +14,4 @@ Use ```make```
 
 # Using
 
-Single run ```./output/hardinfo``` inside the compiled directory. 
-
-```watch -n{seconds} ./output/hardinfo``` to get updated info on frequencies.
-
+Run ```./output/hardinfo``` inside the compiled directory. 
