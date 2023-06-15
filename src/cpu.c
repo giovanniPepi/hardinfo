@@ -5,6 +5,7 @@
 #include "../include/open_file.h"
 #include "../include/cpu.h"
 #include "../include/constants.h"
+#include "../include/g_upt.h"
 
 /*Initialize min values with higher values so they can be compared*/
 void fill_min_freq_values (double **min_cpuf, int pcount) {
@@ -125,7 +126,6 @@ void g_cpui() {
         g_cc(&cpu.cc, cpu_file);
 
         /* prints*/
-        printf("\nCPU\n");
         printf("%s\n", cpu.cpu_name);
         printf("Processors: %d, Cores: %d\n", cpu.pcount, cpu.cc);
 
@@ -139,12 +139,13 @@ void g_cpui() {
 
         printf("[Frequencies] \n");
         for (i = 0; i < cpu.pcount; i++) {
-                printf("Processor [%d] Current %.0f MHz || Max %.0f || Min %.0f  \n", i, cpu.cpuf[i],  cpu.max_cpuf[i], cpu.min_cpuf[i]);
+                printf("Processor [%d] Current %.0f MHz || Max %.0f || Min %.0f \n", i, cpu.cpuf[i],  cpu.max_cpuf[i], cpu.min_cpuf[i]);
         }
+
+        g_uptime(cpu.pcount);
         
         free(cpu.cpuf);
         free(cpu.min_cpuf);
         free(cpu.max_cpuf);
        
-
 }

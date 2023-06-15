@@ -7,8 +7,11 @@
 #include "../include/mem.h"
 
 void hardinfo() {     
-
+        
+        printf("\nMEMORY\n");
         g_memi();
+        
+        printf("\nCPU\n");
         g_cpui();
 
 }

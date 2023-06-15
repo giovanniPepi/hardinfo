@@ -46,6 +46,7 @@ void g_used(int *tot, int *free, int* used) {
 
 void g_memi() {
         FILE* mem_file = open_file("/proc/meminfo", "r");     
+
         char memt_s[] = "MemTotal";
         char memf_s[] = "MemFree";
         char memt_swap[] = "SwapTotal";
@@ -67,7 +68,6 @@ void g_memi() {
         conv_gib(&mem.free_s, &mem.dfree_s );
         conv_gib(&mem.used_s, &mem.dused_s );      
 
-        printf("\nMEMORY\n");
         printf("Total: %.2f GiB\n", mem.dtot);
         printf("Free: %.2f GiB\n", mem.dfree);
         printf("Used: %.2f GiB\n", mem.dused);
@@ -75,6 +75,5 @@ void g_memi() {
         printf("Total Swap: %.2f GiB\n", mem.dtot_s);
         printf("Free Swap: %.2f GiB\n", mem.dfree_s);
         printf("Used Swap: %.2f GiB\n", mem.dused_s);
-
 
 }
