@@ -126,6 +126,7 @@ void g_cpui() {
         g_cc(&cpu.cc, cpu_file);
 
         /* prints*/
+        printf("\nCPU\n");
         printf("%s\n", cpu.cpu_name);
         printf("Processors: %d, Cores: %d\n", cpu.pcount, cpu.cc);
 
