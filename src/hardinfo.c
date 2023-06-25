@@ -7,8 +7,8 @@
 #include "../include/mem.h"
 
 void hardinfo() {     
-        
+
+        g_memi();        
         g_cpui();
-        g_memi();
 
 }
