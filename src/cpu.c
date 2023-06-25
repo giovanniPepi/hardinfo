@@ -139,8 +139,9 @@ void g_cpui() {
         } while((clock() - start_time) / CLOCKS_PER_SEC < seconds);
 
         printf("[Frequencies] \n");
+
         for (i = 0; i < cpu.pcount; i++) {
-                printf("Processor [%d] Current %.0f MHz || Max %.0f || Min %.0f \n", i, cpu.cpuf[i],  cpu.max_cpuf[i], cpu.min_cpuf[i]);
+                printf("Processor [%d]\tCurrent %.0f MHz \tMax %.0f \tMin %.0f\n", i, cpu.cpuf[i],  cpu.max_cpuf[i], cpu.min_cpuf[i]);
         }
 
         g_uptime(cpu.pcount);

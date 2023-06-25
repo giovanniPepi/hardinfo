@@ -1,4 +1,4 @@
-CC = clang
+CC = gcc
 CFLAGS = -Iinclude -Wall -Wextra -std=c17 -Ofast 
 SRCDIR = src
 OBJDIR = output
