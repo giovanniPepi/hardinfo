@@ -2,6 +2,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
+#include <limits.h>
 #include "../include/open_file.h"
 #include "../include/cpu.h"
 #include "../include/constants.h"
@@ -95,11 +97,25 @@ void get_cpuf(double **cpuf, double **min_cpuf, double **max_cpuf, FILE *cpu_fil
         }
 }
 
+void update_screenfreqs(int proc, double curr, double max, double min) {
+        printf("\033[%d;0H", proc + 2); /* Moves the "cursor" to line to update, using ANSI escape seq*/
+        printf("\rProcessor [%d]\tCurrent %.0f MHz \tMax %.0f \tMin %.0f", proc, curr, max, min);
+        printf("\033[K");
+        fflush(stdout);
+}
+
+void clear_screen() {
+    printf("\033[2J");
+    printf("\033[H"); 
+    fflush(stdout);   
+}
+
 void g_cpui() {
         FILE *cpu_file = open_file("/proc/cpuinfo", "r"); 
 
-        int i = 0;
-        int seconds = 1;
+        int i, seconds;
+        i = 0;
+        seconds = 1;
         
         typedef struct {
                 char cpu_name[MAX_WORD_LENGTH];
@@ -130,18 +146,17 @@ void g_cpui() {
         printf("%s\n", cpu.cpu_name);
         printf("Processors: %d, Cores: %d\n", cpu.pcount, cpu.cc);
 
-        /* Timed data*/
-        clock_t start_time = clock();
-        printf("Collecting data for %d seconds...\n", seconds);
+        clear_screen();
 
-        do {                
+        while(1) {                
                 get_cpuf(&cpu.cpuf, &cpu.min_cpuf, &cpu.max_cpuf, cpu_file);
-        } while((clock() - start_time) / CLOCKS_PER_SEC < seconds);
+        
+                printf("[Frequencies] \n");
+                for (i = 0; i < cpu.pcount; i++) {
+                        update_screenfreqs(i, cpu.cpuf[i], cpu.max_cpuf[i], cpu.min_cpuf[i]);
+                }
 
-        printf("[Frequencies] \n");
-
-        for (i = 0; i < cpu.pcount; i++) {
-                printf("Processor [%d]\tCurrent %.0f MHz \tMax %.0f \tMin %.0f\n", i, cpu.cpuf[i],  cpu.max_cpuf[i], cpu.min_cpuf[i]);
+                sleep(seconds);
         }
 
         g_uptime(cpu.pcount);
